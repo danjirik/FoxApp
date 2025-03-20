@@ -5,6 +5,7 @@ type EditableProduct = {
   name: string;
   price: number;
   stockQuantity: number;
+  isActive: boolean;
 };
 
 interface AddProductCardProps {
@@ -17,10 +18,11 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
     name: "",
     price: 0,
     stockQuantity: 0,
+    isActive: true, // Výchozí stav je aktivní
   });
   const [error, setError] = useState<string | null>(null);
 
-  // Validate the product input fields
+  // Validace vstupních polí
   const validateProduct = (product: EditableProduct): string | null => {
     if (!product.name.trim()) return "Název produktu je povinný.";
     if (product.price < 0) return "Cena nemůže být záporná.";
@@ -29,7 +31,6 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
   };
 
   const handleAddProduct = async () => {
-    // Run validation
     const validationError = validateProduct(newProductForm);
     if (validationError) {
       setError(validationError);
@@ -38,7 +39,12 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
 
     try {
       await addNewProduct(newProductForm);
-      setNewProductForm({ name: "", price: 0, stockQuantity: 0 });
+      setNewProductForm({
+        name: "",
+        price: 0,
+        stockQuantity: 0,
+        isActive: true,
+      });
       setShowForm(false);
       setError(null);
       onProductAdded();
@@ -86,7 +92,6 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
                 ...newProductForm,
                 name: e.target.value,
               });
-              // Clear error when the user starts correcting
               setError(null);
             }}
           />
@@ -127,6 +132,24 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
               setError(null);
             }}
           />
+        </div>
+        {/* Přidán checkbox pro nastavení aktivního stavu */}
+        <div className="mb-2 form-check">
+          <input
+            id="new-active"
+            type="checkbox"
+            className="form-check-input"
+            checked={newProductForm.isActive}
+            onChange={(e) =>
+              setNewProductForm({
+                ...newProductForm,
+                isActive: e.target.checked,
+              })
+            }
+          />
+          <label className="form-check-label" htmlFor="new-active">
+            Aktivní
+          </label>
         </div>
         <button className="btn btn-success me-2" onClick={handleAddProduct}>
           Přidej produkt

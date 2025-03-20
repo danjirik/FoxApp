@@ -5,6 +5,7 @@ type EditableProduct = {
   name: string;
   price: number;
   stockQuantity: number;
+  isActive: boolean;
 };
 
 interface ProductCardProps {
@@ -21,6 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     name: product.name,
     price: product.price,
     stockQuantity: product.stockQuantity,
+    isActive: product.isActive,
   });
   const [error, setError] = useState<string | null>(null);
 
@@ -32,6 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       name: product.name,
       price: product.price,
       stockQuantity: product.stockQuantity,
+      isActive: product.isActive,
     });
   };
 
@@ -58,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className="card h-100 position-relative p-3">
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {/* Buttons in top-right corner */}
+      {/* Tlačítka v pravém horním rohu */}
       <div className="position-absolute top-0 end-0 m-2">
         {!editing && (
           <>
@@ -75,7 +78,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Name Field - Full Width */}
+      {/* Pole pro název */}
       <div className="mb-2">
         <label htmlFor={`name-${product.id}`}>Název</label>
         {editing ? (
@@ -91,7 +94,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Price Field */}
+      {/* Pole pro cenu */}
       <div className="mb-2">
         <label htmlFor={`price-${product.id}`}>Cena</label>
         {editing ? (
@@ -117,7 +120,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Stock Quantity Field */}
+      {/* Pole pro zásoby */}
       <div className="mb-2">
         <label htmlFor={`stock-${product.id}`}>Zásoby</label>
         {editing ? (
@@ -135,13 +138,35 @@ const ProductCard: React.FC<ProductCardProps> = ({
           />
         ) : (
           <p className="card-text">
-            {product.stockQuantity} ve skladě{" "}
-            {!product.isActive && <span>(neaktivní)</span>}
+            {product.stockQuantity} ve skladě {!product.isActive}
           </p>
         )}
       </div>
 
-      {/* Save & Cancel Buttons */}
+      {/* Pole pro stav aktivního produktu */}
+      {editing && (
+        <div className="mb-2 form-check">
+          <input
+            id={`active-${product.id}`}
+            type="checkbox"
+            className="form-check-input"
+            checked={editForm.isActive}
+            onChange={(e) =>
+              setEditForm({ ...editForm, isActive: e.target.checked })
+            }
+          />
+          <label className="form-check-label" htmlFor={`active-${product.id}`}>
+            Aktivní
+          </label>
+        </div>
+      )}
+      {!editing && !product.isActive && (
+        <div className="mb-2">
+          <span className="badge bg-secondary">Neaktivní</span>
+        </div>
+      )}
+
+      {/* Tlačítka pro uložení a zrušení úprav */}
       {editing && (
         <div>
           <button className="btn btn-success me-2" onClick={handleSave}>
