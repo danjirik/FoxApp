@@ -1,10 +1,13 @@
-import React from 'react';
+import React from "react";
 
 const Home: React.FC = () => {
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="container mt-4">
       <h1>Domů</h1>
-      <p>Vítejte na domovské stránce!</p>
+      <p>
+        Vítejte v obchodě pana Lišáka! Přejděte do sekce produkty pro zobrazení
+        čerstvých pokrmů.
+      </p>
     </div>
   );
 };
