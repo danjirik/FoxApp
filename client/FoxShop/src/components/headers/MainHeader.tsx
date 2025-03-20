@@ -8,7 +8,6 @@ const Header: React.FC = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        {/* Logo */}
         <Navbar.Brand as={NavLink} to="/">
           <img
             alt="Logo"

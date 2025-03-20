@@ -18,15 +18,15 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
     name: "",
     price: 0,
     stockQuantity: 0,
-    isActive: true, // Výchozí stav je aktivní
+    isActive: true,
   });
   const [error, setError] = useState<string | null>(null);
 
-  // Validace vstupních polí
   const validateProduct = (product: EditableProduct): string | null => {
     if (!product.name.trim()) return "Název produktu je povinný.";
     if (product.price < 0) return "Cena nemůže být záporná.";
     if (product.stockQuantity < 0) return "Zásoby nemohou být záporné.";
+    if (product.price === 0) return "Cena nemůže být nula.";
     return null;
   };
 
@@ -133,7 +133,7 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
             }}
           />
         </div>
-        {/* Přidán checkbox pro nastavení aktivního stavu */}
+
         <div className="mb-2 form-check">
           <input
             id="new-active"

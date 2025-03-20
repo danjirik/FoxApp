@@ -4,18 +4,36 @@ import ProductCard from "./ProductCard";
 import AddProductCard from "./AddProductCard";
 import { mockProducts } from "./mockProducts";
 import ProductSearch, { ProductSearchFilters } from "./ProductSearch";
+import { useSearchParams } from "react-router-dom";
 
 const ProductList: React.FC = () => {
+  const [searchParams] = useSearchParams();
+
+  // Načtení počátečních filtrů z URL
+  const initialFilters: ProductSearchFilters = {
+    ...(searchParams.get("name") && {
+      name: searchParams.get("name") as string,
+    }),
+    ...(searchParams.get("minStock") && {
+      minStock: Number(searchParams.get("minStock")),
+    }),
+    ...(searchParams.get("maxStock") && {
+      maxStock: Number(searchParams.get("maxStock")),
+    }),
+    ...(searchParams.get("includeInactive") === "true" && {
+      includeInactive: true,
+    }),
+  };
+
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState<ProductSearchFilters>({});
+  const [filters, setFilters] = useState<ProductSearchFilters>(initialFilters);
 
   // Modified fetchProducts to accept filters
   const fetchProducts = async (appliedFilters: ProductSearchFilters = {}) => {
     setLoading(true);
     try {
-      // If there are active filters, use searchProducts; otherwise, get all products.
       const data =
         Object.keys(appliedFilters).length > 0
           ? await searchProducts(appliedFilters)
@@ -58,7 +76,6 @@ const ProductList: React.FC = () => {
   return (
     <div className="container mt-4">
       <h1 className="mb-4">Produkty</h1>
-      {/* Pass the handleSearch function to update filter state */}
       <ProductSearch onSearch={handleSearch} />
       <div className="row">
         {sortedProducts.map((product) => (

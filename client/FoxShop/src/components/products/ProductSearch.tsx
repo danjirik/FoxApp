@@ -23,7 +23,6 @@ const ProductFilters: React.FC<ProductSearchProps> = ({ onSearch }) => {
     searchParams.get("includeInactive") === "true"
   );
 
-  // Helper to build filter object
   const buildFilters = (): ProductSearchFilters => ({
     ...(name && { name }),
     ...(minStock && { minStock: Number(minStock) }),
@@ -31,7 +30,6 @@ const ProductFilters: React.FC<ProductSearchProps> = ({ onSearch }) => {
     ...(includeInactive && { includeInactive: true }),
   });
 
-  // Helper to build URL parameters object
   const buildParams = (): Record<string, string> => {
     const params: Record<string, string> = {};
     if (name) params.name = name;
@@ -53,8 +51,8 @@ const ProductFilters: React.FC<ProductSearchProps> = ({ onSearch }) => {
     setMinStock("");
     setMaxStock("");
     setIncludeInactive(false);
-    onSearch({}); // Call onSearch with empty filters.
-    setSearchParams({}); // Clear URL query parameters.
+    onSearch({});
+    setSearchParams({});
   };
 
   return (
