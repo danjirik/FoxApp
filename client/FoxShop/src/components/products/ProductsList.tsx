@@ -29,11 +29,14 @@ const ProductList: React.FC = () => {
   if (loading) return <p>Loading products…</p>;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
+  // Clone and sort the products array by ID (lowest first)
+  const sortedProducts = [...products].sort((a, b) => a.id - b.id);
+
   return (
     <div className="container mt-4">
       <h1 className="mb-4">Products</h1>
       <div className="row">
-        {products.map((product) => (
+        {sortedProducts.map((product) => (
           <div className="col-md-4 mb-4" key={product.id}>
             <ProductCard product={product} onProductUpdated={fetchProducts} />
           </div>

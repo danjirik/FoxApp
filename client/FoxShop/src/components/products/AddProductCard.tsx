@@ -34,8 +34,8 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
 
   if (!showForm) {
     return (
-      <div className="card h-100 d-flex justify-content-center align-items-center">
-        <div className="card-body text-center">
+      <div className="card h-100">
+        <div className="card-body d-flex justify-content-center align-items-center">
           <button
             className="btn btn-outline-primary rounded-circle"
             style={{
