@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { getAllProducts, Product } from "../../hooks/ShopApi";
 import ProductCard from "./ProductCard";
 import AddProductCard from "./AddProductCard";
+import { mockProducts } from "./mockProducts";
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -23,7 +24,11 @@ const ProductList: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
+    const seedAndFetch = async () => {
+      await mockProducts();
+      await fetchProducts();
+    };
+    seedAndFetch();
   }, []);
 
   if (loading) return <p>Loading products…</p>;
