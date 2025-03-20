@@ -31,7 +31,7 @@ const ProductList: React.FC = () => {
     seedAndFetch();
   }, []);
 
-  if (loading) return <p>Loading products…</p>;
+  if (loading) return <p>Načítám produkty…</p>;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   // Clone and sort the products array by ID (lowest first)

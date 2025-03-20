@@ -57,9 +57,9 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
     <div className="card h-100">
       <div className="card-body">
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <h5 className="card-title">New Product</h5>
+        <h5 className="card-title">Nový produkt</h5>
         <div className="mb-2">
-          <label htmlFor="new-name">Name</label>
+          <label htmlFor="new-name">Název</label>
           <input
             id="new-name"
             type="text"
@@ -75,7 +75,7 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
           />
         </div>
         <div className="mb-2">
-          <label htmlFor="new-price">Price</label>
+          <label htmlFor="new-price">Cena</label>
           <div className="input-group">
             <span className="input-group-text">$</span>
             <input
@@ -94,7 +94,7 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
           </div>
         </div>
         <div className="mb-2">
-          <label htmlFor="new-stock">Stock Quantity</label>
+          <label htmlFor="new-stock">Zásoby</label>
           <input
             id="new-stock"
             type="number"
@@ -110,7 +110,7 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
           />
         </div>
         <button className="btn btn-success me-2" onClick={handleAddProduct}>
-          Add Product
+          Přidej produkt
         </button>
         <button
           className="btn btn-secondary"

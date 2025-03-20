@@ -77,7 +77,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Name Field - Full Width */}
       <div className="mb-2">
-        <label htmlFor={`name-${product.id}`}>Name</label>
+        <label htmlFor={`name-${product.id}`}>Název</label>
         {editing ? (
           <input
             id={`name-${product.id}`}
@@ -93,7 +93,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Price Field */}
       <div className="mb-2">
-        <label htmlFor={`price-${product.id}`}>Price</label>
+        <label htmlFor={`price-${product.id}`}>Cena</label>
         {editing ? (
           <div className="input-group">
             <span className="input-group-text">$</span>
@@ -119,7 +119,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Stock Quantity Field */}
       <div className="mb-2">
-        <label htmlFor={`stock-${product.id}`}>Stock Quantity</label>
+        <label htmlFor={`stock-${product.id}`}>Zásoby</label>
         {editing ? (
           <input
             id={`stock-${product.id}`}
@@ -135,8 +135,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
           />
         ) : (
           <p className="card-text">
-            {product.stockQuantity} in stock{" "}
-            {!product.isActive && <span>(inactive)</span>}
+            {product.stockQuantity} ve skladě{" "}
+            {!product.isActive && <span>(neaktivní)</span>}
           </p>
         )}
       </div>
@@ -145,10 +145,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {editing && (
         <div>
           <button className="btn btn-success me-2" onClick={handleSave}>
-            Save Changes
+            Uložit změny
           </button>
           <button className="btn btn-secondary" onClick={handleCancel}>
-            Cancel
+            Zrušit
           </button>
         </div>
       )}

@@ -1,16 +1,16 @@
 import { addNewProduct, getAllProducts } from "../../hooks/ShopApi";
 
 const sampleProducts = [
-  { name: "Apple", price: 1.29, stockQuantity: 150 },
-  { name: "Banana", price: 0.69, stockQuantity: 220 },
-  { name: "Carrot", price: 0.89, stockQuantity: 180 },
-  { name: "Broccoli", price: 2.49, stockQuantity: 90 },
-  { name: "Strawberry", price: 3.99, stockQuantity: 60 },
-  { name: "Spinach", price: 1.99, stockQuantity: 130 },
-  { name: "Orange", price: 1.59, stockQuantity: 200 },
-  { name: "Tomato", price: 2.19, stockQuantity: 140 },
-  { name: "Cucumber", price: 1.79, stockQuantity: 160 },
-  { name: "Potato", price: 0.99, stockQuantity: 300 },
+  { name: "Jablka", price: 1.29, stockQuantity: 150 },
+  { name: "Banány", price: 0.69, stockQuantity: 220 },
+  { name: "Mrkve", price: 0.89, stockQuantity: 180 },
+  { name: "Brokolice", price: 2.49, stockQuantity: 90 },
+  { name: "Jahody", price: 3.99, stockQuantity: 60 },
+  { name: "Špenát", price: 1.99, stockQuantity: 130 },
+  { name: "Pomeranče", price: 1.59, stockQuantity: 200 },
+  { name: "Rajčata", price: 2.19, stockQuantity: 140 },
+  { name: "Okurky", price: 1.79, stockQuantity: 160 },
+  { name: "Brambory", price: 0.99, stockQuantity: 300 },
 ];
 
 export const mockProducts = async () => {
