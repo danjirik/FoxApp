@@ -78,7 +78,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Pole pro název */}
       <div className="mb-2">
         <label htmlFor={`name-${product.id}`}>Název</label>
         {editing ? (
@@ -94,7 +93,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Pole pro cenu */}
       <div className="mb-2">
         <label htmlFor={`price-${product.id}`}>Cena</label>
         {editing ? (
@@ -120,7 +118,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Pole pro zásoby */}
       <div className="mb-2">
         <label htmlFor={`stock-${product.id}`}>Zásoby</label>
         {editing ? (
@@ -143,7 +140,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Pole pro stav aktivního produktu */}
       {editing && (
         <div className="mb-2 form-check">
           <input
@@ -166,7 +162,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       )}
 
-      {/* Tlačítka pro uložení a zrušení úprav */}
       {editing && (
         <div>
           <button className="btn btn-success me-2" onClick={handleSave}>
