@@ -18,11 +18,15 @@ export async function addNewProduct(newProduct: {
   name: string;
   price: number;
   stockQuantity: number;
+  isActive?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 }): Promise<Product> {
   const payload = {
     name: newProduct.name,
     price: newProduct.price,
     stockQuantity: newProduct.stockQuantity, // API expects 'stockQuantity'
+    isActive: newProduct.isActive,
   };
 
   const response = await fetch("http://localhost:3000/products", {
@@ -83,4 +87,30 @@ export async function updateProduct(
     createdAt: data.createdAt,
     updatedAt: data.updatedAt,
   };
+}
+
+export async function searchProducts(filters: {
+  name?: string;
+  minStock?: number;
+  maxStock?: number;
+  includeInactive?: boolean;
+}): Promise<Product[]> {
+  const params = new URLSearchParams();
+  if (filters.name) {
+    params.append("name", filters.name);
+  }
+  if (filters.minStock !== undefined) {
+    params.append("minStock", filters.minStock.toString());
+  }
+  if (filters.maxStock !== undefined) {
+    params.append("maxStock", filters.maxStock.toString());
+  }
+  if (filters.includeInactive !== undefined) {
+    params.append("includeInactive", filters.includeInactive.toString());
+  }
+  const res = await fetch(
+    `http://localhost:3000/products?${params.toString()}`
+  );
+  if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+  return res.json();
 }

@@ -6,8 +6,8 @@ const sampleProducts = [
   { name: "Mrkve", price: 0.89, stockQuantity: 180 },
   { name: "Brokolice", price: 2.49, stockQuantity: 90 },
   { name: "Jahody", price: 3.99, stockQuantity: 60 },
-  { name: "Špenát", price: 1.99, stockQuantity: 130 },
-  { name: "Pomeranče", price: 1.59, stockQuantity: 200 },
+  { name: "Špenát", price: 1.99, stockQuantity: 130, isActive: false },
+  { name: "Pomeranče", price: 1.59, stockQuantity: 200, isActive: false },
   { name: "Rajčata", price: 2.19, stockQuantity: 140 },
   { name: "Okurky", price: 1.79, stockQuantity: 160 },
   { name: "Brambory", price: 0.99, stockQuantity: 300 },
@@ -22,7 +22,7 @@ export const mockProducts = async () => {
       return;
     }
 
-    // Seed the products only if the product list is empty
+    // Add the products only if the product list is empty
     for (const product of sampleProducts) {
       try {
         await addNewProduct(product);

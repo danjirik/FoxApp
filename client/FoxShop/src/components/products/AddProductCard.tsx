@@ -1,4 +1,3 @@
-// AddProductCard.tsx
 import React, { useState } from "react";
 import { addNewProduct } from "../../hooks/ShopApi";
 
@@ -21,11 +20,27 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
   });
   const [error, setError] = useState<string | null>(null);
 
+  // Validate the product input fields
+  const validateProduct = (product: EditableProduct): string | null => {
+    if (!product.name.trim()) return "Název produktu je povinný.";
+    if (product.price < 0) return "Cena nemůže být záporná.";
+    if (product.stockQuantity < 0) return "Zásoby nemohou být záporné.";
+    return null;
+  };
+
   const handleAddProduct = async () => {
+    // Run validation
+    const validationError = validateProduct(newProductForm);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     try {
       await addNewProduct(newProductForm);
       setNewProductForm({ name: "", price: 0, stockQuantity: 0 });
       setShowForm(false);
+      setError(null);
       onProductAdded();
     } catch (err: any) {
       setError(err.message);
@@ -66,12 +81,14 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
             className="form-control"
             placeholder="Product Name"
             value={newProductForm.name}
-            onChange={(e) =>
+            onChange={(e) => {
               setNewProductForm({
                 ...newProductForm,
                 name: e.target.value,
-              })
-            }
+              });
+              // Clear error when the user starts correcting
+              setError(null);
+            }}
           />
         </div>
         <div className="mb-2">
@@ -84,12 +101,13 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
               className="form-control"
               placeholder="0.00"
               value={newProductForm.price}
-              onChange={(e) =>
+              onChange={(e) => {
                 setNewProductForm({
                   ...newProductForm,
                   price: parseFloat(e.target.value),
-                })
-              }
+                });
+                setError(null);
+              }}
             />
           </div>
         </div>
@@ -101,12 +119,13 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
             className="form-control"
             placeholder="0"
             value={newProductForm.stockQuantity}
-            onChange={(e) =>
+            onChange={(e) => {
               setNewProductForm({
                 ...newProductForm,
                 stockQuantity: parseInt(e.target.value, 10),
-              })
-            }
+              });
+              setError(null);
+            }}
           />
         </div>
         <button className="btn btn-success me-2" onClick={handleAddProduct}>
