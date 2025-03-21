@@ -14,8 +14,6 @@ interface ProductSearchProps {
 
 const ProductFilters: React.FC<ProductSearchProps> = ({ onSearch }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // Initialize state from query parameters
   const [name, setName] = useState(searchParams.get("name") || "");
   const [minStock, setMinStock] = useState(searchParams.get("minStock") || "");
   const [maxStock, setMaxStock] = useState(searchParams.get("maxStock") || "");

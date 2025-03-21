@@ -60,8 +60,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div className="card h-100 position-relative p-3">
       {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {/* Tlačítka v pravém horním rohu */}
       <div className="position-absolute top-0 end-0 m-2">
         {!editing && (
           <>
