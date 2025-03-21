@@ -99,7 +99,6 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
         <div className="mb-2">
           <label htmlFor="new-price">Cena</label>
           <div className="input-group">
-            <span className="input-group-text">$</span>
             <input
               id="new-price"
               type="number"
@@ -114,6 +113,7 @@ const AddProductCard: React.FC<AddProductCardProps> = ({ onProductAdded }) => {
                 setError(null);
               }}
             />
+            <span className="input-group-text">Kč</span>
           </div>
         </div>
         <div className="mb-2">

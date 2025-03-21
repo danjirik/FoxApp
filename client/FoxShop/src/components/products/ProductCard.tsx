@@ -72,7 +72,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               X
             </button>
             <button className="btn btn-sm btn-primary" onClick={handleEdit}>
-              Edit
+              Upravit
             </button>
           </>
         )}
@@ -97,7 +97,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <label htmlFor={`price-${product.id}`}>Cena</label>
         {editing ? (
           <div className="input-group">
-            <span className="input-group-text">$</span>
             <input
               id={`price-${product.id}`}
               type="number"
@@ -110,10 +109,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 })
               }
             />
+            <span className="input-group-text">Kč</span>
           </div>
         ) : (
           <h6 className="card-subtitle text-muted">
-            ${product.price.toFixed(2)}
+            {product.price.toFixed(2)} Kč
           </h6>
         )}
       </div>

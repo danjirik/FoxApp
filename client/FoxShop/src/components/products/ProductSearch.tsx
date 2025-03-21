@@ -126,7 +126,7 @@ const ProductFilters: React.FC<ProductSearchProps> = ({ onSearch }) => {
                   className="btn btn-secondary"
                   onClick={handleReset}
                 >
-                  Reset
+                  Vymazat filtry
                 </button>
               </div>
             </div>

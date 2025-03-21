@@ -9,7 +9,6 @@ const AppRoutes: React.FC = () => {
     <Routes>
       <Route path="/domu" element={<Home />} />
       <Route path="/produkty" element={<Products />} />
-      {/* Default route */}
       <Route path="*" element={<Home />} />
     </Routes>
   );
